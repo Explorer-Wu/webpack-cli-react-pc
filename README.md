@@ -17,14 +17,25 @@ In the project directory, you can run:
 ```sh
     npm run start / yarn start
 ```
-* 测试
-```sh
-    npm run test / yarn test
-```
 
 Runs the app in the development mode.<br>
 Open [http://localhost:3603](http://localhost:3603) to view it in the browser.
 
+### 测试
+* run unit tests
+```sh
+    npm run unit / yarn unit
+```
+* run e2e tests
+```sh
+    npm run e2e / yarn e2e
+```
+* run all tests
+```sh
+    npm run test / yarn test
+```
+
+获取mock.js测试模拟后端数据在微前端qiankun框架模版中启动`yarn mockserver` -> `nodemon mock/server.js`
 
 ### 生产坏境打包压缩
 ```sh
