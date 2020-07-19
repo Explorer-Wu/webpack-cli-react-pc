@@ -1,0 +1,50 @@
+{
+  "presets": [
+    [
+      "@babel/preset-env",
+      {
+        "useBuiltIns": "entry",
+        "corejs": 2,
+        "targets": {
+          "browsers": [
+            "last 2 versions",
+            "Firefox ESR",
+            "> 1%",
+            "ie >= 10",
+            "iOS >= 8",
+            "Android >= 4"
+          ]
+        }
+      }
+    ],
+    // "@babel/preset-es2015",
+    "@babel/preset-react"
+    // "@babel/env",
+    // "@babel/react",
+  ],
+  "plugins": [
+    // ["@babel/plugin-transform-classes", {
+    //   "loose": true
+    // }],
+    "@babel/plugin-syntax-dynamic-import",
+    "@babel/plugin-transform-runtime",
+    "@babel/plugin-proposal-class-properties",
+    // "@babel/plugin-proposal-function-bind",
+    // ["@babel/plugin-transform-runtime", { "regenerator": true }],
+    // ["@babel/plugin-proposal-class-properties", { "loose": true }],
+    //只需从 antd 引入模块即可，无需单独引入样式. babel-plugin-import 会帮助你加载 JS 和 CSS
+    [
+      "import",
+      {
+        "libraryName": "antd",
+        "libraryDirectory": "es", // default: lib
+        "style": true // "css" // `style: true` 会加载 less 文件
+      }
+    ],
+    ["styled-jsx/babel", { "plugins": ["styled-jsx-plugin-sass"] }
+    ],
+    ["@babel/plugin-proposal-decorators", { "legacy": true }],
+    ["@babel/plugin-proposal-object-rest-spread", { "useBuiltIns": true }]
+  ],
+  "ignore": []
+}
