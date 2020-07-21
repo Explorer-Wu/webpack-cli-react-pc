@@ -1,14 +1,14 @@
 import React, { PureComponent } from "react";
+import { Link } from 'react-router-dom';
 import { produce } from "immer";
 import PropTypes from "prop-types";
 import { message, Divider, Popconfirm } from "antd";
 import _ from "lodash";
 
 // HOC 工厂实现: 属性代理（PP）和继承反转（II）
-function WithTablePagingHOC(getData, delData, doActions) {
+function WithTablePagingHOC(getData, delData, editData) {
   
   return function TablePagingHOC(WrappedTablePaging) {
-// function TablePagingHOC(WrappedTablePaging, getData, delData) {
     return class ComTablePaging extends PureComponent {
       static propTypes = {
         tablePagProps: PropTypes.object,
@@ -22,7 +22,6 @@ function WithTablePagingHOC(getData, delData, doActions) {
           pagesStates: {
             ...this.props.initStateProps.pages,
           },
-          // nextDelKey: null,
         };
         this.handleChangePage = this.handleChangePage.bind(this);
       }
@@ -33,17 +32,6 @@ function WithTablePagingHOC(getData, delData, doActions) {
       }
 
       componentDidUpdate(prevProps, prevState) {
-        if (doActions.delKey !== this.state.nextDelKey) {
-          this.setState(
-            produce((draft) => {
-              draft.nextDelKey = doActions.delKey;
-            }),
-            () => {
-              this.handleDelete(this.state.nextDelKey);
-            }
-          );
-        }
-
         if (!_.isEqual(prevState.pagesStates, this.state.pagesStates)) {
           const { pageCur, pageSize } = this.state.pagesStates;
           this.loadDataFn(pageCur, pageSize);
@@ -132,8 +120,43 @@ function WithTablePagingHOC(getData, delData, doActions) {
         //   });
         //   draft.columns.push(newActions)
         // });
+        const {actions} = this.props.tablePagProps
+
+        let newTablePagProps;
+        if(!!actions) {
+          newTablePagProps = produce(this.props.tablePagProps, draft => {
+            draft.columns.push({
+              title: "操作",
+              key: "action",
+              render: (text, record) => {
+                const actKey = actions.selKey(record)
+                return actKey ? (
+                  <span>
+                    {/* <Button type="link" className="pd0" onClick={() => this.showEFieldModal(record)}>编辑</Button> */}
+                    {actions.linkurl? (<Link to={`${actions.linkurl}${actKey}`}>详情</Link>) : null }
+                    {actions.delTitle ? (<><Divider type="vertical" />
+                      <Popconfirm
+                        title={actions.delTitle}
+                        onConfirm={() => this.handleDelete(actKey)}
+                        okText="Yes"
+                        cancelText="No"
+                      >
+                        <a>删除</a>
+                      </Popconfirm>
+                    </>) : null }
+                  </span>
+                ) : null
+              }
+            })
+          })
+        } else {
+          newTablePagProps = produce(this.props.tablePagProps, draft => {
+            Reflect.deleteProperty(draft, 'actions')
+          })
+        }
+
         const newProps = {
-          ...this.props.tablePagProps,
+          ...newTablePagProps,
           ...this.state.tablesStates,
           ...this.state.pagesStates,
         };
