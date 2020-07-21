@@ -8,13 +8,13 @@ import WithTablePagingHOC from "@@components/TablePaginations/WithTablePaging";
 import PureTable from "@@components/TablePaginations/PureTable";
 
 export default function Tables(props) {
-  const {initPropsData, initStatesVal, actionStatesVal, getTableDataFn, delArticleFn} = ArticleTablesRule();
+  const {initPropsData, initStatesVal, getTableDataFn, delArticleFn} = ArticleTablesRule();
 //   const ArticleTablePaging = TablePagingHOC(
 //     PureTable,
 //     getTableDataFn,
 //     delArticleFn
 //   );
-  const ArticleTablePaging = WithTablePagingHOC(getTableDataFn, delArticleFn, actionStatesVal)(PureTable)
+  const ArticleTablePaging = WithTablePagingHOC(getTableDataFn, delArticleFn)(PureTable)
 
   return (
     <>

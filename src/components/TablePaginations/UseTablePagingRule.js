@@ -1,21 +1,18 @@
 import React, { useState } from "react";
-import { Link } from 'react-router-dom';
+
 // import { useImmer } from "use-immer";
 import { Divider, Popconfirm, Button } from "antd";
 // import PropTypes from "prop-types";
 import { $Api } from "@@api";
 
 function ArticleTablesRule(props) {
-  const [delKey, setDelKey] = useState(null);
+  // const [delKey, setDelKey] = useState(null);
 
   const getTableDataFn = async (current, pageSize) => {
     return await $Api.getArticleList(current, pageSize);
   };
   const delArticleFn = async (key) => {
     return await $Api.delArticle(key);
-  };
-  const delRowFn = (key) => {
-    setDelKey(key);
   };
 
   const columns = [
@@ -42,31 +39,36 @@ function ArticleTablesRule(props) {
       key: "publish_date",
       minWidth: 160,
     },
-    {
-      title: "操作",
-      key: "action",
-      render: (text, record) => {
-        return record.id ? (
-          <span>
-            {/* <Button type="link" className="pd0" onClick={() => this.showEFieldModal(record)}>编辑</Button> */}
-            {/* <Link to={`/tables/articles/${record.id}`}>详情</Link>
-            <Divider type="vertical" /> */}
-            <Popconfirm
-              title="确认删除该新闻?"
-              onConfirm={() => delRowFn(record.id)}
-              okText="Yes"
-              cancelText="No"
-            >
-              <a>删除</a>
-            </Popconfirm>
-          </span>
-        ) : null
-      }
-    },
+    // {
+    //   title: "操作",
+    //   key: "action",
+    //   render: (text, record) => {
+    //     return record.id ? (
+    //       <span>
+    //         {/* <Button type="link" className="pd0" onClick={() => this.showEFieldModal(record)}>编辑</Button> */}
+    //         {/* <Link to={`/tables/articles/${record.id}`}>详情</Link>
+    //         <Divider type="vertical" /> */}
+    //         <Popconfirm
+    //           title="确认删除该新闻?"
+    //           onConfirm={() => delRowFn(record.id)}
+    //           okText="Yes"
+    //           cancelText="No"
+    //         >
+    //           <a>删除</a>
+    //         </Popconfirm>
+    //       </span>
+    //     ) : null
+    //   }
+    // },
   ];
 
   const initPropsData = {
     columns,
+    actions: {
+      selKey: (record) => record.id,
+      delTitle: "确认删除该新闻?",
+      linkurl: '/tables/articles/',
+    },
     rowKeyFn: (record) => record.id,
     isborder: true,
     // isPaging: false,
@@ -89,9 +91,9 @@ function ArticleTablesRule(props) {
     },
   };
 
-  const actionStatesVal = {
-    delKey,
-  };
+  // const actionStatesVal = {
+  //   delKey,
+  // };
 
   //   const getTableDataFn = async (current, pageSize) => {
   //     try {
@@ -109,7 +111,6 @@ function ArticleTablesRule(props) {
   return {
     initPropsData,
     initStatesVal,
-    actionStatesVal,
     getTableDataFn,
     delArticleFn,
   };
