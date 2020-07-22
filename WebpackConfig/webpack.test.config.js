@@ -4,9 +4,9 @@
 const utils = require('./utils')
 const webpack = require('webpack')
 const merge = require('webpack-merge')
-const baseConfig = require('./webpack.base.config')
+const baseWebpackConfig = require('./webpack.base.config')
 
-var webpackConfig = merge(baseConfig, {
+var webpackConfig = merge(baseWebpackConfig, {
     mode: "none",
     // use inline sourcemap for karma-sourcemap-loader
     module: {

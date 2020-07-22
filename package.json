@@ -1,5 +1,5 @@
 {
-  "name": "webpack-cli-react-templates",
+  "name": "reactmicroapp",
   "version": "1.0.0",
   "description": "A Webpack+react.js templates",
   "scripts": {

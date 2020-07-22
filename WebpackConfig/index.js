@@ -6,7 +6,7 @@ module.exports = {
     env: require('./dev.env'),
     // Paths
     assetsSubDirectory: 'static',
-    assetsPublicPath: '/',
+    assetsPublicPath: `//localhost:3603/`, //  '/',
     proxyTable: {
       '/api/': {
         target: 'http://172.0.0.1:3681',
@@ -21,11 +21,11 @@ module.exports = {
         //   // or log the req
         // }
       },
-      '/apicharts': {
+      '/auth': {
         target: 'http://172.0.0.1:3683',
         changeOrigin: true,
         pathRewrite: {
-          '^/apicharts': '/apicharts'
+          '^/auth': '/auth'
         }
       }
     },

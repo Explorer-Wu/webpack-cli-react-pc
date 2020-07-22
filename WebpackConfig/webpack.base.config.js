@@ -1,3 +1,4 @@
+'use strict'
 const path = require('path');
 const webpack = require('webpack'); //访问内置的插件
 const HtmlWebpackPlugin = require('html-webpack-plugin');
@@ -7,6 +8,7 @@ const HappyPackPlugin = require('./happypack.plugin');
 
 const utils = require('./utils')
 const config = require('./index')
+const packageName = require('../package.json').name;
 
 module.exports = {
 	//webpack 的主目录,基础目录，绝对路径，用于从配置中解析入口起点(entry point)和 loader
@@ -26,7 +28,11 @@ module.exports = {
         //publicPath: "/"
         publicPath: process.env.NODE_ENV === 'production'
             ? config.build.assetsPublicPath
-            : config.dev.assetsPublicPath
+            : config.dev.assetsPublicPath,
+        library: `${packageName}-[name]`,
+        libraryTarget: 'umd',
+        jsonpFunction: `webpackJsonp_${packageName}`,
+        globalObject: 'window'
 	},
 
 	module: {

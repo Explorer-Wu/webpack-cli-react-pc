@@ -159,11 +159,19 @@ const prodConfig = {
         // new webpack.optimize.ModuleConcatenationPlugin(),
 
         // copy custom static assets
-        new CopyWebpackPlugin([{
-            from: utils.resolve('public/static'),
-            to: config.build.assetsSubDirectory,
-            ignore: ['.*']
-        }])
+        new CopyWebpackPlugin([
+          {
+            patterns: [
+              {
+                from: utils.resolve("public/static"),
+                to: config.dev.assetsSubDirectory,
+              },
+            ],
+            options: {
+              concurrency: 100,
+            },
+          }
+        ])
     ],
     // externals: { React: 'React', 'react-dom': 'react-dom' },
     // library 需要一个名为 lodash 的依赖，这个依赖在 consumer 环境中必须存在且可用

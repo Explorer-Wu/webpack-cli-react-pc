@@ -32,14 +32,6 @@ devWebpackConfig.plugins.push(
 
 const compiler = Webpack(devWebpackConfig);
 const devServerConfig = Object.assign({}, devWebpackConfig.devServer, {
-  // open: true,
-  hot: true,
-  // lazy: true,
-
-  /** inline模式：向网页中注入代理客户端代码，通过客户端发起刷新。向每个chunk中都注入客户端代码，当要输出很多chunk，会导致构建变慢。
-   * 关闭inline模式减少构建时间。
-   **/
-  inline: true,
   // config:
   progress: true,
   stats: {
