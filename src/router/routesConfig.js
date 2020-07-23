@@ -2,6 +2,7 @@ import { lazy } from "react";
 const Root = lazy(() => import("@@components/LayoutTemp"));
 const Home = lazy(() => import("@@views/Home/index"));
 const EchartsCom = lazy(() => import("@@views/charts/index"));
+const EchartsD2 = lazy(() => import("@@views/charts/echartsd2"));
 const EchartsD3 = lazy(() => import("@@views/charts/echartsd3"));
 const FormsCom = lazy(() => import("@@views/forms"));
 const Tables = lazy(() => import("@@views/tables/index"));
@@ -11,7 +12,6 @@ const Error = lazy(() => import("@@views/error"));
 const routes =
   // [
   //   {
-  //     path: "/views",
   //     component: Root,
   //     routes:
   [
@@ -45,12 +45,14 @@ const routes =
       path: "/views/charts",
       component: EchartsCom,
       routes: [
-        // {
-        //   path: "/index",
-        //   component: EchartsCom,
-        // },
         {
-          path: "/d3charts",
+          path: "/views/charts/index",
+          // exact: true,
+          component: EchartsD2,
+        },
+        {
+          path: "/views/charts/d3charts",
+          // exact: true,
           component: EchartsD3,
         },
       ],

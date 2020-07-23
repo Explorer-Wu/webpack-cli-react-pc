@@ -121,10 +121,6 @@ function WithTablePagingHOC(getData, delData, editData) {
         //   draft.columns.push(newActions)
         // });
         const {actions} = this.props.tablePagProps
-<<<<<<< HEAD
-=======
-
->>>>>>> 53c2aefe58ddc70a20bc13af17d8179c5ad5e752
         let newTablePagProps;
         if(!!actions) {
           newTablePagProps = produce(this.props.tablePagProps, draft => {
