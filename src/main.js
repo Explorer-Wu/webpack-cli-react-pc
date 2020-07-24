@@ -12,7 +12,8 @@ import "raf/polyfill";
 // import '@babel/polyfill';
 
 import App from "./App";
-import "./PathPublic";
+import "@@/shared/path-public";
+import actions from "@@/shared/actions";
 // import * as serviceWorker from './serviceWorker';
 
 // ReactDOM.render(<App />, document.getElementById("root"));
@@ -21,6 +22,11 @@ function Qrender(props) {
   const { container } = props;
   console.log("[react16] window:", window.__POWERED_BY_QIANKUN__);
   console.log("[react16] render:", props, window.window);
+  if (props) {
+    // 注入 actions 实例
+    actions.setActions(props);
+  }
+
   ReactDOM.render(
     <App />,
     container
@@ -29,21 +35,21 @@ function Qrender(props) {
   );
 }
 
-function storeTest(props) {
-  // 从生命周期 mount 中获取通信方法，使用方式和 master 一致
-  // props.onGlobalStateChange((value, prev) => console.log(`[onGlobalStateChange - ${props.name}]:`, value, prev), true);
-  props.onGlobalStateChange((state, prev) => {
-    // state: 变更后的状态; prev 变更前的状态
-    console.log(`[onGlobalStateChange - ${props.name}]:`, state, prev);
-  });
-  // props.setGlobalState(state);
-  props.setGlobalState({
-    ignore: props.name,
-    user: {
-      name: props.name,
-    },
-  });
-}
+// function storeTest(props) {
+//   // 从生命周期 mount 中获取通信方法，使用方式和 master 一致
+//   // props.onGlobalStateChange((value, prev) => console.log(`[onGlobalStateChange - ${props.name}]:`, value, prev), true);
+//   props.onGlobalStateChange((state, prev) => {
+//     // state: 变更后的状态; prev 变更前的状态
+//     console.log(`[onGlobalStateChange - ${props.name}]:`, state, prev);
+//   });
+//   // props.setGlobalState(state);
+//   props.setGlobalState({
+//     ignore: props.name,
+//     user: {
+//       name: props.name,
+//     },
+//   });
+// }
 
 if (!window.__POWERED_BY_QIANKUN__) {
   Qrender({});
@@ -61,7 +67,7 @@ export async function bootstrap() {
  */
 export async function mount(props) {
   console.log("[react16] props from main framework:", props);
-  storeTest(props);
+  // storeTest(props);
   Qrender(props);
 }
 /**

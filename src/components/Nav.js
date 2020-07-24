@@ -7,7 +7,7 @@ import {
   LineChartOutlined,
   FormOutlined,
   TableOutlined,
-  PictureOutlined,
+  PictureOutlined
   // BarChartOutlined,
   // ShopOutlined,
   // TeamOutlined,
@@ -16,7 +16,7 @@ import {
   // VideoCameraOutlined,
 } from "@ant-design/icons";
 
-import logo from 'public/static/images/logo.svg';
+import logo from "public/static/images/logo.svg";
 
 const { SubMenu } = Menu;
 
@@ -24,13 +24,13 @@ class NavMenu extends PureComponent {
   constructor(props) {
     super(props);
     this.state = {
-      selectedKeys: [],
+      selectedKeys: []
     };
     this.menuLinks = [
       {
         type: <AppstoreOutlined />,
         title: "首页概览",
-        path: "/views/home",
+        path: "/views/home"
       },
       {
         type: <LineChartOutlined />,
@@ -39,42 +39,42 @@ class NavMenu extends PureComponent {
         children: [
           {
             title: "通用图表",
-            path: "/views/charts/index",
+            path: "/views/charts/index"
           },
           {
             title: "D3图表",
-            path: "/views/charts/d3charts",
-          },
-        ],
+            path: "/views/charts/d3charts"
+          }
+        ]
       },
       {
         type: <FormOutlined />,
         title: "表单展示",
-        path: "/views/forms",
+        path: "/views/forms"
       },
       {
         type: <TableOutlined />,
         title: "表格展示",
-        path: "/views/tables",
+        path: "/views/tables"
       },
       {
         type: <PictureOutlined />,
         title: "图片展示",
-        path: "/views/pictures",
-      },
+        path: "/views/pictures"
+      }
     ];
 
-    this.menuPath = this.menuLinks.map((menu) => {
+    this.menuPath = this.menuLinks.map(menu => {
       if (menu.path) {
         return menu.path;
       } else {
-        return menu.children.map((el) => el.path);
+        return menu.children.map(el => el.path);
       }
     });
   }
 
   componentDidMount() {
-    _.flatten(this.menuPath).forEach((mpath) => {
+    _.flatten(this.menuPath).forEach(mpath => {
       if (this.props.location.pathname.indexOf(mpath) > -1) {
         this.setState({ selectedKeys: [mpath] });
       }
@@ -84,7 +84,7 @@ class NavMenu extends PureComponent {
   componentDidUpdate(prevProps, prevState) {
     // const { router } = this.props;
     if (prevProps.location.pathname !== this.props.location.pathname) {
-      _.flatten(this.menuPath).forEach((mpath) => {
+      _.flatten(this.menuPath).forEach(mpath => {
         if (this.props.location.pathname.indexOf(mpath) > -1) {
           this.setState({ selectedKeys: [mpath] });
         }
@@ -92,7 +92,7 @@ class NavMenu extends PureComponent {
     }
   }
 
-  linkTo = (link) => {
+  linkTo = link => {
     console.log("linkTo:", link.key, this.props);
     this.props.history.replace(link.key);
   };
@@ -101,10 +101,8 @@ class NavMenu extends PureComponent {
     let MenusList = this.menuLinks.map((el, index) =>
       el.children ? (
         <SubMenu key={"sub" + index + 1} icon={el.type} title={el.title}>
-          {el.children.map((echd) => (
-            <Menu.Item key={echd.path}>
-              {echd.title}
-            </Menu.Item>
+          {el.children.map(echd => (
+            <Menu.Item key={echd.path}>{echd.title}</Menu.Item>
           ))}
         </SubMenu>
       ) : (
@@ -117,8 +115,8 @@ class NavMenu extends PureComponent {
     return (
       <>
         <div className="head-logo">
-          <img src={logo} alt="logo" type="image/png"/>
-          <div className="title">React-App-PC</div>
+          <img src={logo} alt="logo" type="image/png" />
+          <div className="title">React App PC</div>
         </div>
 
         <Menu

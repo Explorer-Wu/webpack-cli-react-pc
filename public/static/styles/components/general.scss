@@ -2,27 +2,36 @@
 
 @import "../main/function";
 
+.head-logo {
+  height: 56px;
+  overflow: hidden;
+  // text-align: center;
+  padding: 9px;
+  // margin-bottom: 8px;
+  svg,
+  img {
+    display: inline-block;
+    width: auto;
+    height: 38px;
+    margin: 0 0 0 -3px;
+    padding: 0;
+  }
+  .title {
+    display: inline-block;
+    height: 38px;
+    color: #fff;
+    font: normal 16px/38px "Microsoft YaHei";
+  }
+}
+
 // .head-logo {
-//   height: 38px;
-//   overflow: hidden;
-//   text-align: center;
-//   padding: 8px 15px;
-//   margin-bottom: 8px;
-//   svg,img {
-//     // display: inline-block;
-//     float: left;
-//     width: auto;
-//     // height: 40px;
-//     // margin: -18px 0 0;
-//     padding: 0;
-//   }
-//   .title {
-//     float: left;
-//     height: 38px;
-//     margin-left: 10px;
-//     color: #fff;
-//     font: normal 16px/38px "Microsoft YaHei";
-//   }
+//   // float: left;
+//   // width: 220px;
+//   // height: 50px;
+//   // overflow: hidden;
+//   padding: 5px;
+//   /*border-right: 1px solid #2a2f32;*/
+//   /*border-right: 1px solid #202020;*/
 // }
 
 .box-top,
@@ -165,7 +174,7 @@
   padding-bottom: 15px;
 }
 
-.dl-top dd Strong {
+.dl-top dd strong {
   color: #fff;
   font: bold 20px/30px "Microsoft YaHei";
   padding-right: 10px;
@@ -316,24 +325,24 @@
   margin-bottom: 16px;
   background-color: #fff;
 }
-.page-box dt{
-    height: 32px;
-    margin: 10px 0;
-    color: var(--gray-dark);
-    line-height: 32px;
+.page-box dt {
+  height: 32px;
+  margin: 10px 0;
+  color: var(--gray-dark);
+  line-height: 32px;
 }
 .page-box dt h3 {
-    float: left;
-    display: inline-block;
-    font-size: 16px;
-    padding: 0 8px;
+  float: left;
+  display: inline-block;
+  font-size: 16px;
+  padding: 0 8px;
 }
 .page-box dt h3.page-title {
-    border-left: 3px solid var(--blue-light);
-    line-height: 22px;
+  border-left: 3px solid var(--blue-light);
+  line-height: 22px;
 }
 .page-box dd {
-    padding: 10px;
+  padding: 10px;
 }
 // .page-box dd table td {
 //     @extend %txt-nw-ep;
@@ -350,7 +359,6 @@
   float: right;
   margin-right: 10px;
 }
-
 
 .main-box {
   padding: 30px 0;
@@ -374,7 +382,6 @@
   padding-top: 0;
   margin-right: 5px;
 }
-
 
 .App {
   text-align: center;

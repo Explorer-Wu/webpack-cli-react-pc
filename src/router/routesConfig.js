@@ -1,5 +1,5 @@
 import { lazy } from "react";
-const Root = lazy(() => import("@@components/LayoutTemp"));
+// const Root = lazy(() => import("@@components/LayoutTemp"));
 const Home = lazy(() => import("@@views/Home/index"));
 const EchartsCom = lazy(() => import("@@views/charts/index"));
 const EchartsD2 = lazy(() => import("@@views/charts/echartsd2"));

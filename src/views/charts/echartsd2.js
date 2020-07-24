@@ -62,7 +62,7 @@ export default function Charts(props) {
   //    return () => {
   //     //  cleanup
   //    }
-  //  }, [visitsData])
+  //  }, [visitsData])s
 
   // const { route, match, location } = props
   return (
