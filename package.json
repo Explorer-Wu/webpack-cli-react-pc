@@ -8,7 +8,8 @@
     "build": "node webpackRun/build.js",
     "unit": "jest --config test/unit/jest.config.js --coverage",
     "e2e": "node test/e2e/runner.js",
-    "test": "npm run unit && npm run e2e"
+    "test": "npm run unit && npm run e2e",
+    "mockserver": "nodemon ./server_mock/server.js"
   },
   "dependencies": {
     "@ant-design/icons": "^4.2.1",
@@ -114,6 +115,7 @@
     "jest-resolve": "^24.9.0",
     "jest-watch-typeahead": "^0.4.2",
     "json-server": "^0.15.0",
+    "jsonwebtoken": "^8.5.1",
     "less": "^3.10.3",
     "less-loader": "^5.x",
     "less-plugin-npm-import": "^2.1.0",
@@ -164,10 +166,10 @@
   "sideEffects": [
     "./libs/vendor.dll.js",
     "./libs/vendor-dll-manifest.json",
-    "./public/static/styles/antd-custom.less",
-    "./public/static/styles/main/base.scss",
-    "./public/static/styles/components/general.scss",
-    "./public/static/css/main.css"
+    "./public/static/**/*.less",
+    "./public/static/**/*.scss",
+    "./public/static/**/*.css",
+    "./src/components/**/*.scss"
   ],
   "browserslist": {
     "production": [
