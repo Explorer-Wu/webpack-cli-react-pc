@@ -1,11 +1,28 @@
 import Axios from 'axios';
 import { message } from 'antd';
 import CookieStorage from '@@utils/cookiestorage';
+import { BaseURl } from './ipconfig'
 
+// 请求队列
+const fetchQueue = {}
+// 是否开启请求锁。
+const fetchLock = true
+
+const env = process.env.NODE_ENV
+const isProd = env === 'prod'
+
+// 创建Axios实例
 const Axios_instance = Axios.create({
-  // baseURL: '',  // process.env.BASE_URL || 'http://localhost:3681',
+  // baseURL: BaseURl.ipCommon, // process.env.BASE_URL || 'http://localhost:3681',
+  
+  // 是否跨域携带cookie
   withCredentials: true,
-  timeout: 3000
+
+  // 请求超时
+  timeout: 3000,
+  headers: {
+    'cache-control': 'no-cache',
+  }
 });
 
 const StreamPost = (config) => {
@@ -44,9 +61,27 @@ const StreamGet = (config) => {
   document.body.appendChild(iframe)
 }
 
+function responseLock (config) {
+  // 移除出请求队列
+  delete fetchQueue[config.url]
+  delete fetchQueue[config.baseURL + config.url]
+}
+
 // 设置请求拦截器
 Axios_instance.interceptors.request.use(config => {
   // message.loading('加载中', 3)  // loading组件，显示文字加载中，自动关闭延时3s
+
+  // 去除没有值的属性
+  for (const key in config.data) {
+    const val = config.data[key]
+    if (val === undefined || val === '' || val == null) {
+      delete config.data[key]
+    }
+  }
+  // get传参
+  // if (config.method === 'get' && config.data && Object.keys(config.data).length) {
+  //   config.url += `?${qs.stringify(config.data)}`
+  // }
 
   // 判断是否存在token，如果存在的话，则每个http header都加上token
   // if (config.usetoken) {
@@ -55,25 +90,40 @@ Axios_instance.interceptors.request.use(config => {
   //   config.headers.Authorization = `Bearer ${config.usetoken}`;
   //   Reflect.deleteProperty(config, 'usetoken');
   // }
+
+  // 请求锁
+  const lock = config.fetchLock !== undefined && config.fetchLock !== null ? config.fetchLock : fetchLock
+  if (lock) {
+    // 如果有同个请求在队列中，则取消即将发送的请求
+    if (fetchQueue[config.baseURL + config.url]) {
+      config.cancelToken = new Axios.CancelToken((c) => {
+        c(`cancel ${config.url}`)
+      })
+    } else {
+      // 添加入请求队列
+      fetchQueue[config.baseURL + config.url] = 1
+    }
+  }
   
   //处理请求之前的配置
   console.log('interceptors_config:', config)
   return config;
 }, err => {
-  //请求错误处理
-  console.log('request_err:', err)
+  // 请求错误处理
+  !isProd && console.log('request_err:', err)
   return Promise.reject(err)
 })
 
 // 设置响应拦截器
 Axios_instance.interceptors.response.use(response => {
+  responseLock(response.config)
   // 处理字节流
   if (response.headers && response.headers['content-type'] === 'application/octet-stream') {
       const config = response.config
       if (config.method === 'post') {
-          StreamPost(config)
+        StreamPost(config)
       } else if (config.method === 'get') {
-          StreamGet(config)
+        StreamGet(config)
       }
       return
   } else {
@@ -82,14 +132,17 @@ Axios_instance.interceptors.response.use(response => {
         CookieStorage.setCookie('user_token', response.data.access_token);
       }
       //处理响应数据
-      // console.log('interceptors.res:', response)
+      !isProd && console.log('interceptors.res:', response)
       return response;
   }
 }, error => {
+    if (error.config) {
+      responseLock(error.config)
+    }
     if (error.response) {
         // const ErrRes = error.response
         const { status, data } = error.response
-        console.log("interceptors.err-status:", status)
+        !isProd && console.log("interceptors.err:", status, error.config)
         
         switch (status) {
           case 401:

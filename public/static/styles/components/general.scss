@@ -219,7 +219,7 @@
 .dl-list dt h3 {
   display: inline-block;
   font: bold 16px/30px $font-stack;
-  color: var(--blue);
+  color: $color-blue;
 }
 .dl-list dd {
   padding: 10px;
@@ -249,12 +249,12 @@
       @extend %txt-nw-ep;
     }
     > h5 {
-      color: var(--primary-dark);
+      color: $color-dark;
       font: normal 16px/26px "Microsoft YaHei";
       > em {
         float: right;
         font: normal 14px/26px "Microsoft YaHei";
-        color: var(--red);
+        color: $color-red;
       }
     }
     > p {
@@ -272,7 +272,7 @@
     // width: 38px;
     display: inline-block;
     padding: 10px 3px 10px 15px;
-    color: var(--gray-light) !important;
+    color: $color-gray-light !important;
   }
 }
 
@@ -328,7 +328,7 @@
 .page-box dt {
   height: 32px;
   margin: 10px 0;
-  color: var(--gray-dark);
+  color: $color-gray-dark;
   line-height: 32px;
 }
 .page-box dt h3 {
@@ -338,7 +338,7 @@
   padding: 0 8px;
 }
 .page-box dt h3.page-title {
-  border-left: 3px solid var(--blue-light);
+  border-left: 3px solid $color-blue-light;
   line-height: 22px;
 }
 .page-box dd {

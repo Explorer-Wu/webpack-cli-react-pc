@@ -181,6 +181,25 @@ class ApiChart {
       ...this.defaultConfig
     })
   }
+
+  getVsStatus(type) {
+    if (type === null || type === undefined) {
+      return Fetch({
+        method: 'get',
+        url: '/api/charts/status',
+        ...this.defaultConfig
+      })
+    }
+
+    return Fetch({
+      method: 'get',
+      url: '/api/charts/status',
+      params: {
+        type: type
+      },
+      ...this.defaultConfig
+    })
+  }
 }
 
 export {Api, ApiAuth, ApiChart};

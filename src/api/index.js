@@ -7,5 +7,4 @@ const $ApiAuth = new ApiAuth(BaseURl.ipAuth)
 const $Api = new Api(BaseURl.ipCommon)
 const $ApiChart = new ApiChart(BaseURl.ipCommon)
 const $Moment = moment
-
 export { $ApiAuth, $Api, $ApiChart, $Moment }

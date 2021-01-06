@@ -1,5 +1,6 @@
 import { lazy } from "react";
 // const Root = lazy(() => import("@@components/LayoutTemp"));
+// const OverView = lazy(() => import("@@views/Overview/index"));
 const Home = lazy(() => import("@@views/Home/index"));
 const EchartsCom = lazy(() => import("@@views/charts/index"));
 const EchartsD2 = lazy(() => import("@@views/charts/echartsd2"));
@@ -15,11 +16,11 @@ const routes =
   //     component: Root,
   //     routes:
   [
-    {
-      path: "/",
-      exact: true,
-      component: Home,
-    },
+    // {
+    //   path: "/",
+    //   exact: true,
+    //   component: OverView,
+    // },
     {
       path: "/views/",
       exact: true,

@@ -16,8 +16,66 @@
   box-sizing: border-box;
 }
 
+:root {
+  --blue: #368ae5;
+  --blue-light: #2abafd;
+  --blue-dark: #1f50cd;
+  --indigo: #6610f2;
+  --purple: #765df6;
+  --pink: #d13d98;
+  --red: #c03e20;
+  --orange: #ff8318;
+  --yellow: #ffee01;
+  --golden: #fabf30;
+  --green: #1faf18;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --cyan-light: #3dd6ee;
+  --cyan-dark: #05586d;
+  --white: #fff;
+  --gray: #666;
+  --gray-light: #ccc;
+  --gray-dark: #343a40;
+  --inverse: #263238;
+  --primary-light: #606fc7;
+  --primary-dark: #32408f;
+  --success-light: #6ec071;
+  --success-dark: #3d8b40;
+  --info-light: #51adf6;
+  --info-dark: #0c7cd5;
+  --warning-light: #ffad33;
+  --warning-dark: #cc7a00;
+  --danger-light: #f77066;
+  --danger-dark: #a78f8e;
+  --green-light: #00c9b6;
+  --green-dark: #006321;
+  --pink-light: #ee4c83;
+  --pink-dark: #c1134e;
+  --purple-light: #8259cb;
+  --purple-dark: #512e90;
+  --inverse-light: #3b4d56;
+  --inverse-dark: #11171a;
+  --yellow-light: #fff06e;
+  --yellow-dark: #ffe608;
+  --primary: #3f51b5;
+  --secondary: #fff;
+  --success: #5caf50;
+  --info: #2196f3;
+  --warning: #ff9800;
+  --danger: #f44336;
+  --light: #f8f9fa;
+  --dark: #607d8b;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+  --font-family-sans-serif: $font-stack;
+  --font-family-monospace: $font-mono;
+}
+
 html {
-  font-size: 10px;
+  font-size: 14px;
   -webkit-tap-highlight-color: rgba(0, 0, 0, 0); /*这个属性只用于iOS (iPhone和iPad)。当点击一个链接或者通过Javascript定义的可点击元素的时候，它就会出现一个半透明的灰色背景*/
 }
 html,body,div,span,

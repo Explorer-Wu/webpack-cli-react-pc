@@ -5,64 +5,35 @@ $font-stack: -apple-system,BlinkMacSystemFont,"Microsoft YaHei","Segoe UI",Robot
   Oxygen,"Apple Color Emoji","Segoe UI Emoji","Segoe UI Symbol","Noto Color Emoji", Ubuntu, "Cantarell",  "SimSun";
 $font-mono: SFMono-Regular,Menlo,Monaco,Consolas,"Liberation Mono","Courier New",monospace;
 $primary-color: #9e9e9e;
+$color-light: #e3edf5;
+$color-gray: #666;
+$color-gray-light: #ccc;
+$color-gray-dark: #343a40;
+$color-blue: #368ae5;
+$color-blue-light: #2abafd;
+$color-blue-gray: #9ecddd;
+$color-dark: #32408f;
+$color-red: #c03e20;
+$color-yellow-dark: #ffe608;
+// Visual Screen colors
+$vs-primary-color: #58dff8;
+$bar-bg-color: rgb(5, 18, 58);
+$bling-line-bg: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(226,253,255, 1), rgba(0, 0, 0, 0));
 
-:root {
-    --blue: #368ae5;
-    --blue-light: #2abafd;
-    --blue-dark: #1f50cd;
-    --indigo: #6610f2;
-    --purple: #765df6;
-    --pink: #d13d98;
-    --red: #c03e20;
-    --orange: #ff8318;
-    --yellow: #ffee01;
-    --golden: #fabf30;
-    --green: #1faf18;
-    --teal: #20c997;
-    --cyan: #17a2b8;
-    --cyan-light: #3dd6ee;
-    --cyan-dark: #05586d;
-    --white: #fff;
-    --gray: #666;
-    --gray-light: #ccc;
-    --gray-dark: #343a40;
-    --inverse: #263238;
-    --primary-light: #606fc7;
-    --primary-dark: #32408f;
-    --success-light: #6ec071;
-    --success-dark: #3d8b40;
-    --info-light: #51adf6;
-    --info-dark: #0c7cd5;
-    --warning-light: #ffad33;
-    --warning-dark: #cc7a00;
-    --danger-light: #f77066;
-    --danger-dark: #a78f8e;
-    --green-light: #00c9b6;
-    --green-dark: #006321;
-    --pink-light: #ee4c83;
-    --pink-dark: #c1134e;
-    --purple-light: #8259cb;
-    --purple-dark: #512e90;
-    --inverse-light: #3b4d56;
-    --inverse-dark: #11171a;
-    --yellow-light: #fff06e;
-    --yellow-dark: #ffe608;
-    --primary: #3f51b5;
-    --secondary: #fff;
-    --success: #5caf50;
-    --info: #2196f3;
-    --warning: #ff9800;
-    --danger: #f44336;
-    --light: #f8f9fa;
-    --dark: #607d8b;
-    --breakpoint-xs: 0;
-    --breakpoint-sm: 576px;
-    --breakpoint-md: 768px;
-    --breakpoint-lg: 992px;
-    --breakpoint-xl: 1200px;
-    --font-family-sans-serif: $font-stack;
-    --font-family-monospace: $font-mono;
-}
+$margin-width: 1.5rem;
+$block-margin: 1rem;
+$box-title-font-size: 0.8rem;
+$box-title-line-height: 1.5rem;
+
+$bar-shadow-base: 0 2px 4px rgba(0, 0, 0, 0.2);
+
+$bar-shadow-t-bottom: 0 10px 20px rgba(0, 0, 0, 0.5);
+$bar-shadow-t-left: -10px 2px 10px rgba(0, 0, 0, 0.5);
+$bar-shadow-t-right: 10px 2px 10px rgba(0, 0, 0, 0.5);
+
+$bar-shadow-b-top: 0 -10px 20px rgba(0, 0, 0, 0.5);
+$bar-shadow-b-left: -10px -2px 10px rgba(0, 0, 0, 0.5);
+$bar-shadow-b-right: 10px -2px 10px rgba(0, 0, 0, 0.5);
 
 /*--- 定义被继承的样式 ---*/
 /** 
@@ -111,15 +82,17 @@ $primary-color: #9e9e9e;
 }
 //Flex 弹性布局, 注: 标准属性放在兼容属性之后, 低版本的兼容性写法放到最后（ps：css向下兼容），否则无效
 %display_flex {
-    display: -webkit-flex; /* 新版本语法: Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
-    display: -moz-flex;    /* Firefox 18+ */
-    display: flex;         /* 新版本语法: Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
-    
     /* 低版本兼容性 */ 
     display: -webkit-box;   /* 老版本语法: Chrome 4+, Safari 3.1, iOS Safari 3.2+, Safari, iOS, Android browser, older WebKit browsers. */
     display: -moz-box;      /* 老版本语法: Firefox (buggy) */
     display: -ms-flexbox;   /* 混合版本语法: IE 10 */
     display: box;           /* OLD - Android 4.4- */
+
+    display: -webkit-flex; /* 新版本语法: Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */
+    display: -moz-flex;    /* Firefox 18+ */
+    display: flex;         /* 新版本语法: Chrome 29+, Firefox 22+, IE 11+, Opera 12.1/17/18, Android 4.4+ */
+    
+    
     // display: -webkit-box; /* Chrome 4+, Safari 3.1, iOS Safari 3.2+ */  
     // display: -moz-box; /* Firefox 17- */  
     // display: -webkit-flex; /* Chrome 21+, Safari 6.1+, iOS Safari 7+, Opera 15/16 */  
@@ -159,15 +132,19 @@ $primary-color: #9e9e9e;
 // flex-start默认值，左对齐 | flex-end右对齐 | center居中 | 
 // space-between两端对齐，项目之间的间隔都相等 | space-around每个项目两侧的间隔相等;
 @mixin justify-content($content: 'space-between', $justify: 'justify'){
- -webkit-justify-content: $content;
-    // -moz-justify-content: $content;
-    //  -ms-justify-content: $content;
-    //   -o-justify-content: $content;
-         justify-content: $content;
+    /* 低版本兼容性 */
+    -webkit-box-pack: $justify; 
+    -ms-flex-pack: $justify;
 
-        // /* 低版本兼容性 */
-        // -webkit-box-pack: $justify; 
-        //    -ms-flex-pack: $justify;
+    -webkit-justify-content: $content;
+       -moz-justify-content: $content;
+        -ms-justify-content: $content;
+         -o-justify-content: $content;
+            justify-content: $content;
+//         -webkit-box-pack: center;
+//   -webkit-justify-content: center;
+//             -ms-flex-pack: center;
+//           justify-content: center;
 }
 
 //定义项目在交叉轴(横向)上对齐方式

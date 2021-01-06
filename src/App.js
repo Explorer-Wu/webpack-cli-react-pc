@@ -7,7 +7,7 @@ import {
 } from "react-router-dom";
 // import History from '@@router/history';
 import MainLayout from "@@components/LayoutTemp";
-
+import OverView from "@@views/Overview/index";
 import "public/static/styles/antd-custom.less";
 import "public/static/styles/main/base.scss";
 import "public/static/styles/components/general.scss";
@@ -22,8 +22,9 @@ function App() {
       forceRefresh={!supportsHistory}
     >
       <Switch>
+        <Route path="/overview" component={OverView} />
         <Route path="/views" component={MainLayout} />
-        <Redirect to="/views/home" />
+        <Redirect to="/overview" />
       </Switch>
     </Router>
   );

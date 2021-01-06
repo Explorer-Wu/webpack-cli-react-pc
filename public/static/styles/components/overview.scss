@@ -1,0 +1,167 @@
+@charset "UTF-8";
+
+@import "../main/function";
+
+.overview {
+  display: flex;
+  font-size: 18px;
+  height: 100vh;
+  width: 100vw;
+  overflow: hidden;
+  padding: 3em 1.5em 1.5em;
+  // background-color: rgb(3, 12, 38);
+  background-image: url("../../images/stars-bg.jpg");
+  background-size: cover;
+}
+
+@media screen and (max-width: 1366px) {
+  .overview {
+    font-size: 12px;
+    min-height: 800px;
+    min-width: 1366px;
+    overflow: auto!important;
+  }
+}
+
+.vs-left, .vs-right {
+  height: 100%;
+  vertical-align: top;
+}
+
+.vs-left {
+  width: 30vw;
+  margin-right: $block-margin;
+
+  & > div {
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+  }
+
+  & > div > div:not(:last-child) {
+      height: 32%;
+      flex-shrink: 0;
+      //flex-grow: 1;
+      margin-bottom: $block-margin;
+  }
+
+  & > div > div:last-child {
+      flex-grow: 1;
+  }
+}
+
+.vs-right {
+  flex-grow: 1;
+  padding-top: $block-margin;
+  display: flex;
+  flex-direction: column;
+}
+.vs-right-top {
+  flex-grow: 1;
+  position: relative;
+}
+.vs-right-bottom {
+  height: 35%;
+  display: flex;
+  & > div:first-child {
+      width: 20%;
+      margin-right: $block-margin;
+  }
+  & > div:nth-child(2) {
+      margin-right: $block-margin;
+      width: 30%;
+  }
+  & > div:nth-child(3) {
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      & > div:first-child {
+          height: 33%;
+          margin-bottom: 1em;
+      }
+      & > div:last-child {
+          flex-grow: 1;
+      }
+  }
+}
+
+@font-face {
+  font-family: DS-DIGI;
+  src: url('../../fonts/DS-DIGI.TTF'); /*Non-IE*/
+}
+
+.vs-box {
+  border-radius: 0.5em;
+  background: rgba(0, 0, 0, 0.2);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  width: 100%;
+  height: 100%;
+  padding: 0.8em;
+  display: flex;
+  flex-direction: column;
+
+  &-title {
+    &:before {
+      content: " ";
+      height: 4px;
+      width: 4px;
+      border-radius: 50%;
+      margin: -2px 1px 0 -4px;
+      background: white;
+      display: inline-block;
+      vertical-align: middle;
+    }
+    padding-left: 1em;
+    font-size: $box-title-font-size;
+    font-weight: 700;
+    line-height: $box-title-line-height;
+    color: white;
+    margin-bottom: $box-title-line-height/2;
+  }
+
+  &-content {
+    width: 100%;
+    flex-grow: 1;
+    padding: 0 1em;
+  }
+
+  &-legend {
+    position: absolute;
+    right: 0;
+    top: -1.5*$box-title-line-height;
+    font-size: 0.8em;
+    line-height: $box-title-line-height;
+    color: white;
+  }
+
+  & > dt > strong {
+    line-height: 30px;
+    color: #fff;
+  }
+  & > dt h3 {
+    display: inline-block;
+    font: bold 16px/30px $font-stack;
+    color: #fff;
+  }
+}
+
+.vs-icon {
+  display: inline-block;
+  background-size: contain;
+  vertical-align: middle;
+  width: 1em;
+  height: 1em;
+  background-repeat: no-repeat;
+}
+
+.vs-warning-icon {
+  background-image: url("../../images/icon-warning.svg");
+}
+
+.vs-date-icon {
+  background-image: url("../../images/icon-date.svg");
+}
+
+.vs-period-icon {
+  background-image: url("../../images/icon-period.svg");
+}
