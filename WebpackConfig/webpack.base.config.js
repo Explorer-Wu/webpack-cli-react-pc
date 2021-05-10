@@ -172,7 +172,11 @@ module.exports = {
     //告知 webpack 去确定那些由模块提供的导出内容，为 export * from ... 生成更多高效的代码。 默认 optimization.providedExports 会被启用。
     providedExports: true,
   },
-
+  
+  externals: {
+    'BaiduMap': 'BMap',
+    'BaiduMapGL': 'BMapGL'
+  },
   // 配置模块如何解析
   // 请求重定向，显示指出依赖查找路径  resolve.alias 配置路径映射，减少文件递归解析
   resolve: {
@@ -213,6 +217,7 @@ module.exports = {
       // '@@reducers': utils.resolve('/src/reduxstore/reducers'),
       // '@@store': utils.resolve('/src/reduxstore/store'),
       "@@utils": utils.resolve("/src/utils"),
+      "@@assets": utils.resolve("/src/assets"),
       "@@api": utils.resolve("/src/api"),
       "@@": utils.resolve("/src"),
       // 'static': utils.resolve('static'),

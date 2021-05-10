@@ -72,7 +72,7 @@ function FetchVisitsRule(chartParams) {
 function FetchCapacityRule(chartParams) {
     const [capacityData, setCapacityData] = useImmer({})
 
-     useEffect(() => {
+    useEffect(() => {
         getDataFn(chartParams);
     }, [])
 

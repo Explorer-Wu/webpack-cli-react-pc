@@ -201,7 +201,7 @@ const prodConfig = {
           'react-router-dom': 'react-router-dom',
           'react-router-config': 'react-router-config',
           'redux': 'redux',
-          'react-redux': 'react-redux'
+          'react-redux': 'react-redux',
           // Array,  subtract 可以通过全局 math 对象下的属性 subtract 访问（例如 window['math']['subtract']）
           //subtract: ['./math', 'subtract'] 
         },

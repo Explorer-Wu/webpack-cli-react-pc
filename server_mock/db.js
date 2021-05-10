@@ -2,7 +2,8 @@
 // import Mock from 'mockjs'
 // import { param2Obj } from '@utils/index'
 const Mock = require('mockjs');
-// const LoginReg = require('./mockdata/logreg');
+const LoginReg = require('./mockdata/logreg');
+const OverViewData = require('./mockdata/overviews');
 const globalData = require('./mockdata/globals');
 const weatherData = require('./mockdata/weather');
 const mixChartsData = require('./mockdata/mixcharts');
@@ -12,8 +13,12 @@ const appMesData = require('./mockdata/appmessage');
 module.exports = function () {
   return {
   // msg: '成功获取数据',
-    // login: LoginReg.login,
-    // logout: LoginReg.logout,
+    // login: LoginReg.authlogin,
+    logout: LoginReg.authlogout,
+    flowstats: OverViewData.getFlowStats,
+    roadstats: OverViewData.getRoadStats,
+    top5flow: OverViewData.getTop5Flows,
+    radarweather: mixChartsData.getRadarData,
     global: globalData.getGlobals,
     visits: mixChartsData.getVisits,
     capacity: mixChartsData.getCapacityRatio,

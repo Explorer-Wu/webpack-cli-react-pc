@@ -127,6 +127,6 @@ server.listen({
     host: ip,
     port: port,
 }, () => {
-    console.log(JSON.stringify(jsonServer));
+    // console.log(JSON.stringify(jsonServer));
     console.log(`JSON Server is running in http://${ip}:${port}`);
 });

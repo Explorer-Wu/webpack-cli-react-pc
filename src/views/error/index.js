@@ -3,12 +3,12 @@ import React from "react";
 
 function NoMatch(props) {
   return (
-    <div>
-      <h3>
+    <>
+      <h3 className="error">
         No match for 
         {/* <code>{props.location.pathname}</code> */}
       </h3>
-    </div>
+    </>
   );
 }
 

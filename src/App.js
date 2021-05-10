@@ -6,12 +6,13 @@ import {
   Redirect,
 } from "react-router-dom";
 // import History from '@@router/history';
+import LayoutScreen from "@@components/Visualscreen/LayoutScreen";
 import MainLayout from "@@components/LayoutTemp";
-import OverView from "@@views/Overview/index";
-import "public/static/styles/antd-custom.less";
-import "public/static/styles/main/base.scss";
-import "public/static/styles/components/general.scss";
-// import "public/static/css/main.css"
+// import OverView from "@@views/Overview/index";
+import "@@assets/styles/antd-custom.less";
+import "@@assets/styles/main/base.scss";
+import "@@assets/styles/components/general.scss";
+// import "@@assets/css/main.css"
 
 const supportsHistory = "pushState" in window.history;
 // BrowserRouter as Router用 forceRefresh={!supportsHistory}  history={History}
@@ -22,9 +23,9 @@ function App() {
       forceRefresh={!supportsHistory}
     >
       <Switch>
-        <Route path="/overview" component={OverView} />
+        <Route path="/screenfull" component={LayoutScreen} />
         <Route path="/views" component={MainLayout} />
-        <Redirect to="/overview" />
+        <Redirect to="/screenfull" />
       </Switch>
     </Router>
   );

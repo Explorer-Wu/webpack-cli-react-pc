@@ -17,7 +17,6 @@ export default class ComChartForm extends Component {
                 end: null,
             },
         };
-        
     }
 
     periodSelectChange = (value) => {

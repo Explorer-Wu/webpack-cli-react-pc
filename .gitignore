@@ -22,6 +22,7 @@ yarn-error.log*
 /test/e2e/reports
 selenium-debug.log
 *.bak*
+*.psd
 
 .env.local
 .env.development.local

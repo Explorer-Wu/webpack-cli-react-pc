@@ -1,7 +1,11 @@
 //自己定义一个动态路由规则
 module.exports = {
     // "/auth/login": "/login",
-    // "/auth/logout": "/logout",
+    "/auth/logout": "/logout",
+    "/api/flowstats\\?page=:page&limit=:limit": "/flowstats?page=:page&limit=:limit",
+    "/api/roadstats\\?page=:page&limit=:limit": "/roadstats?page=:page&limit=:limit",
+    "/api/charts/top5flow\\?period=:period": "/top5flow?period=:period",
+    "/api/charts/radarweather": "/radarweather",
     "/api/global": "/global", //&start=:start&end=:end
     "/api/charts/visits": "/visits",
     "/api/charts/capacity\\?period=:period": "/capacity?period=:period",

@@ -1,7 +1,7 @@
 {
   "name": "reactmicroapp",
   "version": "1.0.0",
-  "description": "A Webpack+react.js templates",
+  "description": "A Webpack+react.js template",
   "scripts": {
     "dlllibs": "node webpackRun/create.dll.js",
     "start": "node webpackRun/start.js",
@@ -124,7 +124,7 @@
     "mini-css-extract-plugin": "^0.8.0",
     "mockjs": "^1.0.1-beta3",
     "node-notifier": "^5.4.1",
-    "node-sass": "^4.14.1",
+    "node-sass": "^4.x",
     "nodemon": "^1.19.1",
     "optimize-css-assets-webpack-plugin": "^5.0.3",
     "ora": "^3.4.0",
@@ -169,6 +169,7 @@
     "./public/static/**/*.less",
     "./public/static/**/*.scss",
     "./public/static/**/*.css",
+    "./src/assets/styles/**/*.scss",
     "./src/components/**/*.scss"
   ],
   "browserslist": {
@@ -190,7 +191,7 @@
     "node": ">= 8.0.0",
     "npm": ">= 5.0.0"
   },
-  "author": "Explorer Wu",
+  "author": "Explorer-Wu",
   "private": true,
   "license": "MIT"
 }
